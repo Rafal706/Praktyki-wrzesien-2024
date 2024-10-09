@@ -1,0 +1,49 @@
+﻿@model Praktyki2024.stronainternetowa.Models.OpinionFormModel
+
+@{
+    ViewBag.Title = "Formularz opinii";
+}
+
+<h2>Formularz opinii</h2>
+
+@using (Html.BeginForm("Index", "Opinion", FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rating)
+        @Html.DropDownListFor(m => m.Rating, new SelectList(new List<int> { 1, 2, 3, 4, 5 }), "Wybierz ocenę", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Rating)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Opinion)
+        @Html.TextAreaFor(m => m.Opinion, new { @class = "form-control", rows = 5 })
+        @Html.ValidationMessageFor(m => m.Opinion)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.AdditionalComments)
+        @Html.TextAreaFor(m => m.AdditionalComments, new { @class = "form-control", rows = 5 })
+        @Html.ValidationMessageFor(m => m.AdditionalComments)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Wyślij opinię</button>
+}
+
+<hr />
+
+<p>Podziel się swoją opinią o naszej stronie!</p>
